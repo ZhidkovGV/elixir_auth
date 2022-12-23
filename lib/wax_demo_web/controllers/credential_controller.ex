@@ -161,18 +161,13 @@ defmodule WaxDemoWeb.CredentialController do
   end
 
   defp check_authenticator_status(credential_id, cred_id_aaguid_mapping, challenge) do
+
     case cred_id_aaguid_mapping[credential_id] do
       nil ->
         :ok
 
-      aaguid ->
-        case Wax.Metadata.get_by_aaguid(aaguid, challenge) do
-          {:ok, _} ->
-            :ok
-
-          {:error, _} = error ->
-            error
-        end
+      _aaguid ->
+        :ok
     end
   end
 end
